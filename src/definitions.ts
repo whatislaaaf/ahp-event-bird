@@ -1,3 +1,3 @@
 export interface AhpEventBirdPlugin {
-  echo(options: { value: string }): Promise<{ value: string }>;
+  saveCredentials(options: { username: string; password: string }): Promise<{ isSuccess: boolean }>;
 }

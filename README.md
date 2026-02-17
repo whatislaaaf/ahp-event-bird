@@ -13,24 +13,24 @@ npx cap sync
 
 <docgen-index>
 
-* [`echo(...)`](#echo)
+* [`saveCredentials(...)`](#savecredentials)
 
 </docgen-index>
 
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
-### echo(...)
+### saveCredentials(...)
 
 ```typescript
-echo(options: { value: string; }) => Promise<{ value: string; }>
+saveCredentials(options: { username: string; password: string; }) => Promise<{ isSuccess: boolean; }>
 ```
 
-| Param         | Type                            |
-| ------------- | ------------------------------- |
-| **`options`** | <code>{ value: string; }</code> |
+| Param         | Type                                                 |
+| ------------- | ---------------------------------------------------- |
+| **`options`** | <code>{ username: string; password: string; }</code> |
 
-**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
+**Returns:** <code>Promise&lt;{ isSuccess: boolean; }&gt;</code>
 
 --------------------
 

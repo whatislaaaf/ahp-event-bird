@@ -9,14 +9,27 @@ import Capacitor
 public class AhpEventBirdPlugin: CAPPlugin, CAPBridgedPlugin {
     public let identifier = "AhpEventBirdPlugin"
     public let jsName = "AhpEventBird"
+
     public let pluginMethods: [CAPPluginMethod] = [
-        CAPPluginMethod(name: "echo", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "saveCredentials", returnType: CAPPluginReturnPromise)
     ]
 
-    @objc func echo(_ call: CAPPluginCall) {
-        let value = call.getString("value") ?? ""
-        call.resolve([
-            "value": value
-        ])
+    private var pendingSaveCredentialsCall: [CAPPluginCall] = []
+
+    @objc func saveCredentials(_ call: CAPPluginCall) {
+        let username = call.getString("username") ?? ""
+        let password = call.getString("password") ?? ""
+
+        NotificationCenter.default.post(name: Notification.Name("AhpSaveCredentials"), object: ["username": username, "password": password])
+        pendingSaveCredentialsCall.append(call)
+    }
+
+    @objc public func saveCredentialsResult(_ isSuccess: Bool) {
+        print("[Native] saveCredentialsResult()")
+
+        for call in pendingSaveCredentialsCall {
+            call.resolve(["isSuccess": isSuccess])
+        }
+        pendingSaveCredentialsCall.removeAll()
     }
 }
