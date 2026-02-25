@@ -1,11 +1,16 @@
 import { WebPlugin } from '@capacitor/core';
-
-import type { AhpEventBirdPlugin } from './definitions';
+import { AhpEventBirdPlugin, Credentials, IsSuccess, ProgressActivity } from './definitions';
 
 export class AhpEventBirdWeb extends WebPlugin implements AhpEventBirdPlugin {
-  async saveCredentials(_options: { username: string; password: string }): Promise<{ isSuccess: boolean }> {
-    console.log('saveCredentials()');
+  startProgressActivity(_: ProgressActivity): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
 
-    return { isSuccess: true };
+  completeProgressActivity(_: ProgressActivity): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+
+  async saveCredentials(_options: Credentials): Promise<IsSuccess> {
+    throw new Error('Method not implemented.');
   }
 }
