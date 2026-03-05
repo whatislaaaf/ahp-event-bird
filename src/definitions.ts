@@ -17,4 +17,5 @@ export interface AhpEventBirdPlugin {
   saveCredentials(options: Credentials): Promise<IsSuccess>;
   startProgressActivity(data: ProgressActivity): Promise<void>;
   completeProgressActivity(data: ProgressActivity): Promise<void>;
+  getFCMToken(): Promise<{ value: string }>;
 }

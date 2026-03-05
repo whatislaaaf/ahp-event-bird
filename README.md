@@ -14,6 +14,9 @@ npx cap sync
 <docgen-index>
 
 * [`saveCredentials(...)`](#savecredentials)
+* [`startProgressActivity(...)`](#startprogressactivity)
+* [`completeProgressActivity(...)`](#completeprogressactivity)
+* [Interfaces](#interfaces)
 
 </docgen-index>
 
@@ -23,15 +26,68 @@ npx cap sync
 ### saveCredentials(...)
 
 ```typescript
-saveCredentials(options: { username: string; password: string; }) => Promise<{ isSuccess: boolean; }>
+saveCredentials(options: Credentials) => Promise<IsSuccess>
 ```
 
-| Param         | Type                                                 |
-| ------------- | ---------------------------------------------------- |
-| **`options`** | <code>{ username: string; password: string; }</code> |
+| Param         | Type                                                |
+| ------------- | --------------------------------------------------- |
+| **`options`** | <code><a href="#credentials">Credentials</a></code> |
 
-**Returns:** <code>Promise&lt;{ isSuccess: boolean; }&gt;</code>
+**Returns:** <code>Promise&lt;<a href="#issuccess">IsSuccess</a>&gt;</code>
 
 --------------------
+
+
+### startProgressActivity(...)
+
+```typescript
+startProgressActivity(data: ProgressActivity) => Promise<void>
+```
+
+| Param      | Type                                                          |
+| ---------- | ------------------------------------------------------------- |
+| **`data`** | <code><a href="#progressactivity">ProgressActivity</a></code> |
+
+--------------------
+
+
+### completeProgressActivity(...)
+
+```typescript
+completeProgressActivity(data: ProgressActivity) => Promise<void>
+```
+
+| Param      | Type                                                          |
+| ---------- | ------------------------------------------------------------- |
+| **`data`** | <code><a href="#progressactivity">ProgressActivity</a></code> |
+
+--------------------
+
+
+### Interfaces
+
+
+#### IsSuccess
+
+| Prop            | Type                 |
+| --------------- | -------------------- |
+| **`isSuccess`** | <code>boolean</code> |
+
+
+#### Credentials
+
+| Prop           | Type                |
+| -------------- | ------------------- |
+| **`username`** | <code>string</code> |
+| **`password`** | <code>string</code> |
+
+
+#### ProgressActivity
+
+| Prop             | Type                |
+| ---------------- | ------------------- |
+| **`progressId`** | <code>string</code> |
+| **`taskName`**   | <code>string</code> |
+| **`startedAt`**  | <code>string</code> |
 
 </docgen-api>
