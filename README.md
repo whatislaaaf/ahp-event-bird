@@ -16,6 +16,7 @@ npx cap sync
 * [`saveCredentials(...)`](#savecredentials)
 * [`startProgressActivity(...)`](#startprogressactivity)
 * [`completeProgressActivity(...)`](#completeprogressactivity)
+* [`getFCMToken()`](#getfcmtoken)
 * [Interfaces](#interfaces)
 
 </docgen-index>
@@ -60,6 +61,17 @@ completeProgressActivity(data: ProgressActivity) => Promise<void>
 | Param      | Type                                                          |
 | ---------- | ------------------------------------------------------------- |
 | **`data`** | <code><a href="#progressactivity">ProgressActivity</a></code> |
+
+--------------------
+
+
+### getFCMToken()
+
+```typescript
+getFCMToken() => Promise<{ value: string; }>
+```
+
+**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
 
 --------------------
 
