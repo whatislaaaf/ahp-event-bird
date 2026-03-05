@@ -13,10 +13,13 @@ public class AhpEventBirdPlugin: CAPPlugin, CAPBridgedPlugin {
     public let pluginMethods: [CAPPluginMethod] = [
         CAPPluginMethod(name: "saveCredentials", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "startProgressActivity", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "completeProgressActivity", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "completeProgressActivity", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "getFCMToken", returnType: CAPPluginReturnPromise)
     ]
 
     private var pendingSaveCredentialsCall: [CAPPluginCall] = []
+    private var pendingFCMCalls: [CAPPluginCall] = []
+    private var savedFCMToken: String?
 
     @objc func saveCredentials(_ call: CAPPluginCall) {
         let username = call.getString("username") ?? ""
@@ -24,6 +27,26 @@ public class AhpEventBirdPlugin: CAPPlugin, CAPBridgedPlugin {
 
         NotificationCenter.default.post(name: Notification.Name("AhpSaveCredentials"), object: ["username": username, "password": password])
         pendingSaveCredentialsCall.append(call)
+    }
+
+    @objc func getFCMToken(_ call: CAPPluginCall) {
+        if let token = savedFCMToken {
+            print("[Native] JS called getFCMToken, passing the token.")
+            call.resolve(["value": token])
+        } else {
+            print("[Native] JS called getFCMToken, but token not ready. Queuing callback.")
+            pendingFCMCalls.append(call)
+        }
+    }
+
+    @objc public func setFCMToken(_ token: String) {
+        print("[Native] Setting FCM token in plugin")
+        self.savedFCMToken = token
+
+        for call in pendingFCMCalls {
+            call.resolve(["value": token])
+        }
+        pendingFCMCalls.removeAll()
     }
 
     @objc func startProgressActivity(_ call: CAPPluginCall) {
