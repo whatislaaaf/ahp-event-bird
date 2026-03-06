@@ -30,9 +30,11 @@ public class AhpEventBirdPlugin: CAPPlugin, CAPBridgedPlugin {
     }
 
     @objc func getFCMToken(_ call: CAPPluginCall) {
+        let deviceId = UIDevice.current.identifierForVendor?.uuidString
+
         if let token = savedFCMToken {
             print("[Native] JS called getFCMToken, passing the token.")
-            call.resolve(["value": token])
+            call.resolve(["fcmToken": token, "deviceId": deviceId])
         } else {
             print("[Native] JS called getFCMToken, but token not ready. Queuing callback.")
             pendingFCMCalls.append(call)
@@ -41,10 +43,12 @@ public class AhpEventBirdPlugin: CAPPlugin, CAPBridgedPlugin {
 
     @objc public func setFCMToken(_ token: String) {
         print("[Native] Setting FCM token in plugin")
+
         self.savedFCMToken = token
+        let deviceId = UIDevice.current.identifierForVendor?.uuidString
 
         for call in pendingFCMCalls {
-            call.resolve(["value": token])
+            call.resolve(["fcmToken": token, "deviceId": deviceId])
         }
         pendingFCMCalls.removeAll()
     }

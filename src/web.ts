@@ -2,7 +2,7 @@ import { WebPlugin } from '@capacitor/core';
 import { AhpEventBirdPlugin, Credentials, IsSuccess, ProgressActivity } from './definitions';
 
 export class AhpEventBirdWeb extends WebPlugin implements AhpEventBirdPlugin {
-  getFCMToken(): Promise<{ value: string }> {
+  getFCMToken(): Promise<{ fcmToken: string; deviceId: string }> {
     throw new Error('Method not implemented.');
   }
 

@@ -1,6 +1,6 @@
 {
   "name": "ahp-event-bird",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "private features of Adhd Hyper Planner App",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
