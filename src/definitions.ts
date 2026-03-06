@@ -18,4 +18,5 @@ export interface AhpEventBirdPlugin {
   startProgressActivity(data: ProgressActivity): Promise<void>;
   completeProgressActivity(data: ProgressActivity): Promise<void>;
   getFCMToken(): Promise<{ fcmToken: string; deviceId: string }>;
+  clearFCMToken(): Promise<void>;
 }
