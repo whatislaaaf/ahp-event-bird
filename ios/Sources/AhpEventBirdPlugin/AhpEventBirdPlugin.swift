@@ -42,7 +42,7 @@ public class AhpEventBirdPlugin: CAPPlugin, CAPBridgedPlugin {
         }
     }
 
-    @objc public func clearFCMToken() {
+    @objc public func clearFCMToken(_ call: CAPPluginCall) {
         self.savedFCMToken = nil
         call.resolve()
     }

@@ -17,6 +17,7 @@ npx cap sync
 * [`startProgressActivity(...)`](#startprogressactivity)
 * [`completeProgressActivity(...)`](#completeprogressactivity)
 * [`getFCMToken()`](#getfcmtoken)
+* [`clearFCMToken()`](#clearfcmtoken)
 * [Interfaces](#interfaces)
 
 </docgen-index>
@@ -72,6 +73,15 @@ getFCMToken() => Promise<{ fcmToken: string; deviceId: string; }>
 ```
 
 **Returns:** <code>Promise&lt;{ fcmToken: string; deviceId: string; }&gt;</code>
+
+--------------------
+
+
+### clearFCMToken()
+
+```typescript
+clearFCMToken() => Promise<void>
+```
 
 --------------------
 
