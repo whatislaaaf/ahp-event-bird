@@ -68,10 +68,10 @@ completeProgressActivity(data: ProgressActivity) => Promise<void>
 ### getFCMToken()
 
 ```typescript
-getFCMToken() => Promise<{ value: string; }>
+getFCMToken() => Promise<{ fcmToken: string; deviceId: string; }>
 ```
 
-**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
+**Returns:** <code>Promise&lt;{ fcmToken: string; deviceId: string; }&gt;</code>
 
 --------------------
 
