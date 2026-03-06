@@ -21,37 +21,6 @@ public class AhpEventBirdPlugin: CAPPlugin, CAPBridgedPlugin {
     private var pendingFCMCalls: [CAPPluginCall] = []
     private var savedFCMToken: String?
 
-    // Called by Capacitor when the bridge is ready and the plugin is set up.
-    // At this point it is safe to access the bridge and resolve any pending calls.
-    override public func load() {
-        // Observe future token deliveries from AppDelegate.
-        NotificationCenter.default.addObserver(
-            forName: Notification.Name("FCMTokenReceived"),
-            object: nil,
-            queue: .main
-        ) { [weak self] notification in
-            if let token = notification.object as? String {
-                print("[Native] FCMTokenReceived notification — applying token.")
-                self?.setFCMToken(token)
-            }
-        }
-
-        // In case AppDelegate already received the token before load() was called
-        // (e.g. Firebase fired didReceiveRegistrationToken very early at startup),
-        // pick it up from UserDefaults where AppDelegate stashed it.
-        if let token = UserDefaults.standard.string(forKey: "latestFCMToken") {
-            print("[Native] load() — found cached FCM token in UserDefaults, applying now.")
-            setFCMToken(token)
-        }
-    }
-
-    @objc private func onFCMTokenReceived(_ notification: Notification) {
-        if let token = notification.object as? String {
-            print("[Native] FCMTokenReceived notification — applying token.")
-            setFCMToken(token)
-        }
-    }
-
     @objc func saveCredentials(_ call: CAPPluginCall) {
         let username = call.getString("username") ?? ""
         let password = call.getString("password") ?? ""
