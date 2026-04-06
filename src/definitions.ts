@@ -13,10 +13,17 @@ export interface ProgressActivity {
   startedAt: string;
 }
 
+export interface GoogleSignInResult {
+  idToken: string;
+  email: string;
+  displayName: string;
+}
+
 export interface AhpEventBirdPlugin {
   saveCredentials(options: Credentials): Promise<IsSuccess>;
   startProgressActivity(data: ProgressActivity): Promise<void>;
   completeProgressActivity(data: ProgressActivity): Promise<void>;
   getFCMToken(): Promise<{ fcmToken: string; deviceId: string }>;
   clearFCMToken(): Promise<void>;
+  signInWithGoogle(): Promise<GoogleSignInResult>;
 }
