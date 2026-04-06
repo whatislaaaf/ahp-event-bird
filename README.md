@@ -18,6 +18,7 @@ npx cap sync
 * [`completeProgressActivity(...)`](#completeprogressactivity)
 * [`getFCMToken()`](#getfcmtoken)
 * [`clearFCMToken()`](#clearfcmtoken)
+* [`signInWithGoogle()`](#signinwithgoogle)
 * [Interfaces](#interfaces)
 
 </docgen-index>
@@ -86,6 +87,17 @@ clearFCMToken() => Promise<void>
 --------------------
 
 
+### signInWithGoogle()
+
+```typescript
+signInWithGoogle() => Promise<GoogleSignInResult>
+```
+
+**Returns:** <code>Promise&lt;<a href="#googlesigninresult">GoogleSignInResult</a>&gt;</code>
+
+--------------------
+
+
 ### Interfaces
 
 
@@ -111,5 +123,14 @@ clearFCMToken() => Promise<void>
 | **`progressId`** | <code>string</code> |
 | **`taskName`**   | <code>string</code> |
 | **`startedAt`**  | <code>string</code> |
+
+
+#### GoogleSignInResult
+
+| Prop              | Type                |
+| ----------------- | ------------------- |
+| **`idToken`**     | <code>string</code> |
+| **`email`**       | <code>string</code> |
+| **`displayName`** | <code>string</code> |
 
 </docgen-api>
