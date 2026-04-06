@@ -13,6 +13,12 @@ export interface ProgressActivity {
   startedAt: string;
 }
 
+export interface AppleSignInResult {
+  idToken: string;
+  email: string;
+  displayName: string;
+}
+
 export interface GoogleSignInResult {
   idToken: string;
   email: string;
@@ -26,4 +32,5 @@ export interface AhpEventBirdPlugin {
   getFCMToken(): Promise<{ fcmToken: string; deviceId: string }>;
   clearFCMToken(): Promise<void>;
   signInWithGoogle(): Promise<GoogleSignInResult>;
+  signInWithApple(): Promise<AppleSignInResult>;
 }

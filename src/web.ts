@@ -1,11 +1,22 @@
 import { WebPlugin } from '@capacitor/core';
-import { AhpEventBirdPlugin, Credentials, GoogleSignInResult, IsSuccess, ProgressActivity } from './definitions';
+import {
+  AhpEventBirdPlugin,
+  AppleSignInResult,
+  Credentials,
+  GoogleSignInResult,
+  IsSuccess,
+  ProgressActivity,
+} from './definitions';
 
 export class AhpEventBirdWeb extends WebPlugin implements AhpEventBirdPlugin {
+  signInWithApple(): Promise<AppleSignInResult> {
+    throw new Error('Method not implemented.');
+  }
+
   signInWithGoogle(): Promise<GoogleSignInResult> {
     throw new Error('Method not implemented.');
   }
-  
+
   clearFCMToken(): Promise<void> {
     throw new Error('Method not implemented.');
   }

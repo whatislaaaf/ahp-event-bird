@@ -16,17 +16,39 @@ public class AhpEventBirdPlugin: CAPPlugin, CAPBridgedPlugin {
         CAPPluginMethod(name: "completeProgressActivity", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "getFCMToken", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "clearFCMToken", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "signInWithGoogle", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "signInWithGoogle", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "signInWithGoogle", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "signInWithApple", returnType: CAPPluginReturnPromise)
     ]
 
     private var pendingSaveCredentialsCall: [CAPPluginCall] = []
     private var pendingFCMCalls: [CAPPluginCall] = []
     private var savedFCMToken: String?
     private var pendingGoogleSignInCall: CAPPluginCall?
+    private var pendingAppleSignInCall: CAPPluginCall?
 
     @objc func signInWithGoogle(_ call: CAPPluginCall) {
         pendingGoogleSignInCall = call
         NotificationCenter.default.post(name: Notification.Name("AhpSignInWithGoogle"), object: nil)
+    }
+
+    @objc func signInWithApple(_ call: CAPPluginCall) {
+        pendingAppleSignInCall = call
+        NotificationCenter.default.post(name: Notification.Name("AhpSignInWithApple"), object: nil)
+    }
+
+    @objc public func appleSignInResult(idToken: String, email: String, displayName: String) {
+        pendingAppleSignInCall?.resolve([
+            "idToken": idToken,
+            "email": email,
+            "displayName": displayName
+        ])
+        pendingAppleSignInCall = nil
+    }
+
+    @objc public func appleSignInError(_ message: String) {
+        pendingAppleSignInCall?.reject(message)
+        pendingAppleSignInCall = nil
     }
 
     @objc public func googleSignInResult(idToken: String, email: String, displayName: String) {
