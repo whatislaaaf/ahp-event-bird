@@ -33,4 +33,6 @@ export interface AhpEventBirdPlugin {
   clearFCMToken(): Promise<void>;
   signInWithGoogle(): Promise<GoogleSignInResult>;
   signInWithApple(): Promise<AppleSignInResult>;
+  pauseProgressActivity(): Promise<void>;
+  resumeProgressActivity(): Promise<void>;
 }

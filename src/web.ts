@@ -9,6 +9,13 @@ import {
 } from './definitions';
 
 export class AhpEventBirdWeb extends WebPlugin implements AhpEventBirdPlugin {
+  pauseProgressActivity(): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+  resumeProgressActivity(): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+
   signInWithApple(): Promise<AppleSignInResult> {
     throw new Error('Method not implemented.');
   }

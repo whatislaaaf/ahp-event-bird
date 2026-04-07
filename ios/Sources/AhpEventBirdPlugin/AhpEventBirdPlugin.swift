@@ -18,7 +18,9 @@ public class AhpEventBirdPlugin: CAPPlugin, CAPBridgedPlugin {
         CAPPluginMethod(name: "clearFCMToken", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "signInWithGoogle", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "signInWithGoogle", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "signInWithApple", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "signInWithApple", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "pauseProgressActivity", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "resumeProgressActivity", returnType: CAPPluginReturnPromise),
     ]
 
     private var pendingSaveCredentialsCall: [CAPPluginCall] = []
@@ -26,6 +28,16 @@ public class AhpEventBirdPlugin: CAPPlugin, CAPBridgedPlugin {
     private var savedFCMToken: String?
     private var pendingGoogleSignInCall: CAPPluginCall?
     private var pendingAppleSignInCall: CAPPluginCall?
+
+    @objc func pauseProgressActivity(_ call: CAPPluginCall) {
+        NotificationCenter.default.post(name: Notification.Name("AhpPauseProgressActivity"), object: nil)
+        call.resolve()
+    }
+
+    @objc func resumeProgressActivity(_ call: CAPPluginCall) {
+        NotificationCenter.default.post(name: Notification.Name("AhpResumeProgressActivity"), object: nil)
+        call.resolve()
+    }
 
     @objc func signInWithGoogle(_ call: CAPPluginCall) {
         pendingGoogleSignInCall = call

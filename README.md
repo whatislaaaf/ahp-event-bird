@@ -19,6 +19,9 @@ npx cap sync
 * [`getFCMToken()`](#getfcmtoken)
 * [`clearFCMToken()`](#clearfcmtoken)
 * [`signInWithGoogle()`](#signinwithgoogle)
+* [`signInWithApple()`](#signinwithapple)
+* [`pauseProgressActivity()`](#pauseprogressactivity)
+* [`resumeProgressActivity()`](#resumeprogressactivity)
 * [Interfaces](#interfaces)
 
 </docgen-index>
@@ -98,6 +101,35 @@ signInWithGoogle() => Promise<GoogleSignInResult>
 --------------------
 
 
+### signInWithApple()
+
+```typescript
+signInWithApple() => Promise<AppleSignInResult>
+```
+
+**Returns:** <code>Promise&lt;<a href="#applesigninresult">AppleSignInResult</a>&gt;</code>
+
+--------------------
+
+
+### pauseProgressActivity()
+
+```typescript
+pauseProgressActivity() => Promise<void>
+```
+
+--------------------
+
+
+### resumeProgressActivity()
+
+```typescript
+resumeProgressActivity() => Promise<void>
+```
+
+--------------------
+
+
 ### Interfaces
 
 
@@ -126,6 +158,15 @@ signInWithGoogle() => Promise<GoogleSignInResult>
 
 
 #### GoogleSignInResult
+
+| Prop              | Type                |
+| ----------------- | ------------------- |
+| **`idToken`**     | <code>string</code> |
+| **`email`**       | <code>string</code> |
+| **`displayName`** | <code>string</code> |
+
+
+#### AppleSignInResult
 
 | Prop              | Type                |
 | ----------------- | ------------------- |
