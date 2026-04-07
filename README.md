@@ -21,7 +21,7 @@ npx cap sync
 * [`signInWithGoogle()`](#signinwithgoogle)
 * [`signInWithApple()`](#signinwithapple)
 * [`pauseProgressActivity()`](#pauseprogressactivity)
-* [`resumeProgressActivity()`](#resumeprogressactivity)
+* [`resumeProgressActivity(...)`](#resumeprogressactivity)
 * [Interfaces](#interfaces)
 
 </docgen-index>
@@ -121,11 +121,15 @@ pauseProgressActivity() => Promise<void>
 --------------------
 
 
-### resumeProgressActivity()
+### resumeProgressActivity(...)
 
 ```typescript
-resumeProgressActivity() => Promise<void>
+resumeProgressActivity(data: { startedAt: string; }) => Promise<void>
 ```
+
+| Param      | Type                                |
+| ---------- | ----------------------------------- |
+| **`data`** | <code>{ startedAt: string; }</code> |
 
 --------------------
 

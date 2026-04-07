@@ -35,7 +35,8 @@ public class AhpEventBirdPlugin: CAPPlugin, CAPBridgedPlugin {
     }
 
     @objc func resumeProgressActivity(_ call: CAPPluginCall) {
-        NotificationCenter.default.post(name: Notification.Name("AhpResumeProgressActivity"), object: nil)
+        let startedAt = call.getString("startedAt") ?? ""
+        NotificationCenter.default.post(name: Notification.Name("AhpResumeProgressActivity"), object: ["startedAt": startedAt])
         call.resolve()
     }
 

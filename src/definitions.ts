@@ -34,5 +34,5 @@ export interface AhpEventBirdPlugin {
   signInWithGoogle(): Promise<GoogleSignInResult>;
   signInWithApple(): Promise<AppleSignInResult>;
   pauseProgressActivity(): Promise<void>;
-  resumeProgressActivity(): Promise<void>;
+  resumeProgressActivity(data: { startedAt: string }): Promise<void>;
 }
