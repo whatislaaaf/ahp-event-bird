@@ -22,6 +22,7 @@ npx cap sync
 * [`signInWithApple()`](#signinwithapple)
 * [`pauseProgressActivity()`](#pauseprogressactivity)
 * [`resumeProgressActivity(...)`](#resumeprogressactivity)
+* [`syncWidgetData(...)`](#syncwidgetdata)
 * [Interfaces](#interfaces)
 
 </docgen-index>
@@ -134,6 +135,19 @@ resumeProgressActivity(data: { startedAt: string; }) => Promise<void>
 --------------------
 
 
+### syncWidgetData(...)
+
+```typescript
+syncWidgetData(_: WidgetSyncData) => Promise<void>
+```
+
+| Param   | Type                                                      |
+| ------- | --------------------------------------------------------- |
+| **`_`** | <code><a href="#widgetsyncdata">WidgetSyncData</a></code> |
+
+--------------------
+
+
 ### Interfaces
 
 
@@ -177,5 +191,16 @@ resumeProgressActivity(data: { startedAt: string; }) => Promise<void>
 | **`idToken`**     | <code>string</code> |
 | **`email`**       | <code>string</code> |
 | **`displayName`** | <code>string</code> |
+
+
+#### WidgetSyncData
+
+| Prop                 | Type                |
+| -------------------- | ------------------- |
+| **`tasks`**          | <code>string</code> |
+| **`totalCount`**     | <code>number</code> |
+| **`completedCount`** | <code>number</code> |
+| **`focusTaskName`**  | <code>string</code> |
+| **`focusStartedAt`** | <code>string</code> |
 
 </docgen-api>

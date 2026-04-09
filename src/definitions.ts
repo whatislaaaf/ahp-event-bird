@@ -25,6 +25,14 @@ export interface GoogleSignInResult {
   displayName: string;
 }
 
+export interface WidgetSyncData {
+  tasks: string;
+  totalCount: number;
+  completedCount: number;
+  focusTaskName?: string;
+  focusStartedAt?: string;
+}
+
 export interface AhpEventBirdPlugin {
   saveCredentials(options: Credentials): Promise<IsSuccess>;
   startProgressActivity(data: ProgressActivity): Promise<void>;
@@ -35,4 +43,5 @@ export interface AhpEventBirdPlugin {
   signInWithApple(): Promise<AppleSignInResult>;
   pauseProgressActivity(): Promise<void>;
   resumeProgressActivity(data: { startedAt: string }): Promise<void>;
+  syncWidgetData(_: WidgetSyncData): Promise<void>;
 }

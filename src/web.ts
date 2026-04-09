@@ -6,6 +6,7 @@ import {
   GoogleSignInResult,
   IsSuccess,
   ProgressActivity,
+  WidgetSyncData,
 } from './definitions';
 
 export class AhpEventBirdWeb extends WebPlugin implements AhpEventBirdPlugin {
@@ -29,6 +30,10 @@ export class AhpEventBirdWeb extends WebPlugin implements AhpEventBirdPlugin {
   }
 
   getFCMToken(): Promise<{ fcmToken: string; deviceId: string }> {
+    throw new Error('Method not implemented.');
+  }
+
+  syncWidgetData(_: WidgetSyncData): Promise<void> {
     throw new Error('Method not implemented.');
   }
 

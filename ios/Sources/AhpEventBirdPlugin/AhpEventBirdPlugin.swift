@@ -21,6 +21,7 @@ public class AhpEventBirdPlugin: CAPPlugin, CAPBridgedPlugin {
         CAPPluginMethod(name: "signInWithApple", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "pauseProgressActivity", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "resumeProgressActivity", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "syncWidgetData", returnType: CAPPluginReturnPromise),
     ]
 
     private var pendingSaveCredentialsCall: [CAPPluginCall] = []
@@ -28,6 +29,25 @@ public class AhpEventBirdPlugin: CAPPlugin, CAPBridgedPlugin {
     private var savedFCMToken: String?
     private var pendingGoogleSignInCall: CAPPluginCall?
     private var pendingAppleSignInCall: CAPPluginCall?
+
+    @objc func syncWidgetData(_ call: CAPPluginCall) {
+        let tasks = call.getString("tasks") ?? "[]"
+        let totalCount = call.getInt("totalCount") ?? 0
+        let completedCount = call.getInt("completedCount") ?? 0
+        let focusTaskName = call.getString("focusTaskName")
+        let focusStartedAt = call.getString("focusStartedAt")
+
+        NotificationCenter.default.post(
+            name: Notification.Name("AhpSyncWidgetData"),
+            object: [
+                "tasks": tasks,
+                "totalCount": totalCount,
+                "completedCount": completedCount,
+                "focusTaskName": focusTaskName as Any,
+                "focusStartedAt": focusStartedAt as Any,
+            ])
+        call.resolve()
+    }
 
     @objc func pauseProgressActivity(_ call: CAPPluginCall) {
         NotificationCenter.default.post(name: Notification.Name("AhpPauseProgressActivity"), object: nil)
