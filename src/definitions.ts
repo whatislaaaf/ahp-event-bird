@@ -1,3 +1,5 @@
+import type { PluginListenerHandle } from '@capacitor/core';
+
 export interface Credentials {
   username: string;
   password: string;
@@ -33,6 +35,16 @@ export interface WidgetSyncData {
   focusStartedAt?: string;
 }
 
+export interface AppUpdateEvent {
+  /** 'blocking' = minor/major behind, full overlay; 'patch' = non-blocking alert */
+  kind: 'blocking' | 'patch';
+  currentVersion: string;
+  appStoreVersion: string;
+  /** App Store deep link, e.g. itms-apps://apps.apple.com/app/id6759459572 */
+  appStoreUrl: string;
+  releaseNotes?: string;
+}
+
 export interface AhpEventBirdPlugin {
   saveCredentials(options: Credentials): Promise<IsSuccess>;
   startProgressActivity(data: ProgressActivity): Promise<void>;
@@ -44,4 +56,9 @@ export interface AhpEventBirdPlugin {
   pauseProgressActivity(): Promise<void>;
   resumeProgressActivity(data: { startedAt: string }): Promise<void>;
   syncWidgetData(_: WidgetSyncData): Promise<void>;
+  addListener(
+    eventName: 'appUpdateRequired',
+    listenerFunc: (event: AppUpdateEvent) => void,
+  ): Promise<PluginListenerHandle>;
+  removeAllListeners(): Promise<void>;
 }

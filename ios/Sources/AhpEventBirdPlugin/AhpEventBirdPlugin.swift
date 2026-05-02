@@ -135,6 +135,25 @@ public class AhpEventBirdPlugin: CAPPlugin, CAPBridgedPlugin {
         pendingFCMCalls.removeAll()
     }
 
+    @objc public func notifyAppUpdateRequired(
+        kind: String,
+        currentVersion: String,
+        appStoreVersion: String,
+        appStoreUrl: String,
+        releaseNotes: String?
+    ) {
+        var payload: [String: Any] = [
+            "kind": kind,
+            "currentVersion": currentVersion,
+            "appStoreVersion": appStoreVersion,
+            "appStoreUrl": appStoreUrl,
+        ]
+        if let releaseNotes = releaseNotes {
+            payload["releaseNotes"] = releaseNotes
+        }
+        notifyListeners("appUpdateRequired", data: payload)
+    }
+
     @objc func startProgressActivity(_ call: CAPPluginCall) {
         let progressId = call.getString("progressId") ?? ""
         let taskName = call.getString("taskName") ?? ""

@@ -23,6 +23,8 @@ npx cap sync
 * [`pauseProgressActivity()`](#pauseprogressactivity)
 * [`resumeProgressActivity(...)`](#resumeprogressactivity)
 * [`syncWidgetData(...)`](#syncwidgetdata)
+* [`addListener('appUpdateRequired', ...)`](#addlistenerappupdaterequired-)
+* [`removeAllListeners()`](#removealllisteners)
 * [Interfaces](#interfaces)
 
 </docgen-index>
@@ -148,6 +150,31 @@ syncWidgetData(_: WidgetSyncData) => Promise<void>
 --------------------
 
 
+### addListener('appUpdateRequired', ...)
+
+```typescript
+addListener(eventName: 'appUpdateRequired', listenerFunc: (event: AppUpdateEvent) => void) => Promise<PluginListenerHandle> & PluginListenerHandle
+```
+
+| Param              | Type                                                                          |
+| ------------------ | ----------------------------------------------------------------------------- |
+| **`eventName`**    | <code>'appUpdateRequired'</code>                                              |
+| **`listenerFunc`** | <code>(event: <a href="#appupdateevent">AppUpdateEvent</a>) =&gt; void</code> |
+
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+
+--------------------
+
+
+### removeAllListeners()
+
+```typescript
+removeAllListeners() => Promise<void>
+```
+
+--------------------
+
+
 ### Interfaces
 
 
@@ -202,5 +229,23 @@ syncWidgetData(_: WidgetSyncData) => Promise<void>
 | **`completedCount`** | <code>number</code> |
 | **`focusTaskName`**  | <code>string</code> |
 | **`focusStartedAt`** | <code>string</code> |
+
+
+#### PluginListenerHandle
+
+| Prop         | Type                                      |
+| ------------ | ----------------------------------------- |
+| **`remove`** | <code>() =&gt; Promise&lt;void&gt;</code> |
+
+
+#### AppUpdateEvent
+
+| Prop                  | Type                               | Description                                                                 |
+| --------------------- | ---------------------------------- | --------------------------------------------------------------------------- |
+| **`kind`**            | <code>'blocking' \| 'patch'</code> | 'blocking' = minor/major behind, full overlay; 'patch' = non-blocking alert |
+| **`currentVersion`**  | <code>string</code>                |                                                                             |
+| **`appStoreVersion`** | <code>string</code>                |                                                                             |
+| **`appStoreUrl`**     | <code>string</code>                | App Store deep link, e.g. itms-apps://apps.apple.com/app/id6759459572       |
+| **`releaseNotes`**    | <code>string</code>                |                                                                             |
 
 </docgen-api>
