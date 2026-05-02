@@ -10,6 +10,10 @@ import {
 } from './definitions';
 
 export class AhpEventBirdWeb extends WebPlugin implements AhpEventBirdPlugin {
+  resetPatchAlertShownToday(): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+  
   pauseProgressActivity(): Promise<void> {
     throw new Error('Method not implemented.');
   }

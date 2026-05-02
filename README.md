@@ -23,6 +23,7 @@ npx cap sync
 * [`pauseProgressActivity()`](#pauseprogressactivity)
 * [`resumeProgressActivity(...)`](#resumeprogressactivity)
 * [`syncWidgetData(...)`](#syncwidgetdata)
+* [`resetPatchAlertShownToday()`](#resetpatchalertshowntoday)
 * [`addListener('appUpdateRequired', ...)`](#addlistenerappupdaterequired-)
 * [`removeAllListeners()`](#removealllisteners)
 * [Interfaces](#interfaces)
@@ -150,6 +151,15 @@ syncWidgetData(_: WidgetSyncData) => Promise<void>
 --------------------
 
 
+### resetPatchAlertShownToday()
+
+```typescript
+resetPatchAlertShownToday() => Promise<void>
+```
+
+--------------------
+
+
 ### addListener('appUpdateRequired', ...)
 
 ```typescript
@@ -240,12 +250,12 @@ removeAllListeners() => Promise<void>
 
 #### AppUpdateEvent
 
-| Prop                  | Type                               | Description                                                                 |
-| --------------------- | ---------------------------------- | --------------------------------------------------------------------------- |
-| **`kind`**            | <code>'blocking' \| 'patch'</code> | 'blocking' = minor/major behind, full overlay; 'patch' = non-blocking alert |
-| **`currentVersion`**  | <code>string</code>                |                                                                             |
-| **`appStoreVersion`** | <code>string</code>                |                                                                             |
-| **`appStoreUrl`**     | <code>string</code>                | App Store deep link, e.g. itms-apps://apps.apple.com/app/id6759459572       |
-| **`releaseNotes`**    | <code>string</code>                |                                                                             |
+| Prop                  | Type                               | Description                                                                           |
+| --------------------- | ---------------------------------- | ------------------------------------------------------------------------------------- |
+| **`kind`**            | <code>'blocking' \| 'patch'</code> | 'blocking' = minor/major behind (full red overlay); 'patch' = non-blocking soft alert |
+| **`currentVersion`**  | <code>string</code>                |                                                                                       |
+| **`appStoreVersion`** | <code>string</code>                |                                                                                       |
+| **`appStoreUrl`**     | <code>string</code>                | App Store deep link, e.g. itms-apps://apps.apple.com/app/id6759459572                 |
+| **`releaseNotes`**    | <code>string</code>                |                                                                                       |
 
 </docgen-api>
