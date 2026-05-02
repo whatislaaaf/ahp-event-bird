@@ -22,6 +22,7 @@ public class AhpEventBirdPlugin: CAPPlugin, CAPBridgedPlugin {
         CAPPluginMethod(name: "pauseProgressActivity", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "resumeProgressActivity", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "syncWidgetData", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "resetPatchAlertShownToday", returnType: CAPPluginReturnPromise),
     ]
 
     private var pendingSaveCredentialsCall: [CAPPluginCall] = []
@@ -152,6 +153,11 @@ public class AhpEventBirdPlugin: CAPPlugin, CAPBridgedPlugin {
             payload["releaseNotes"] = releaseNotes
         }
         notifyListeners("appUpdateRequired", data: payload)
+    }
+
+    @objc func resetPatchAlertShownToday(_ call: CAPPluginCall) {
+        NotificationCenter.default.post(name: Notification.Name("AhpResetPatchAlertShownToday"), object: nil)
+        call.resolve()
     }
 
     @objc func startProgressActivity(_ call: CAPPluginCall) {

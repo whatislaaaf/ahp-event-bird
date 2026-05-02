@@ -36,7 +36,7 @@ export interface WidgetSyncData {
 }
 
 export interface AppUpdateEvent {
-  /** 'blocking' = minor/major behind, full overlay; 'patch' = non-blocking alert */
+  /** 'blocking' = minor/major behind (full red overlay); 'patch' = non-blocking soft alert */
   kind: 'blocking' | 'patch';
   currentVersion: string;
   appStoreVersion: string;
@@ -56,6 +56,7 @@ export interface AhpEventBirdPlugin {
   pauseProgressActivity(): Promise<void>;
   resumeProgressActivity(data: { startedAt: string }): Promise<void>;
   syncWidgetData(_: WidgetSyncData): Promise<void>;
+  resetPatchAlertShownToday(): Promise<void>;
   addListener(
     eventName: 'appUpdateRequired',
     listenerFunc: (event: AppUpdateEvent) => void,

@@ -153,7 +153,7 @@ syncWidgetData(_: WidgetSyncData) => Promise<void>
 ### addListener('appUpdateRequired', ...)
 
 ```typescript
-addListener(eventName: 'appUpdateRequired', listenerFunc: (event: AppUpdateEvent) => void) => Promise<PluginListenerHandle> & PluginListenerHandle
+addListener(eventName: 'appUpdateRequired', listenerFunc: (event: AppUpdateEvent) => void) => Promise<PluginListenerHandle>
 ```
 
 | Param              | Type                                                                          |
@@ -161,7 +161,7 @@ addListener(eventName: 'appUpdateRequired', listenerFunc: (event: AppUpdateEvent
 | **`eventName`**    | <code>'appUpdateRequired'</code>                                              |
 | **`listenerFunc`** | <code>(event: <a href="#appupdateevent">AppUpdateEvent</a>) =&gt; void</code> |
 
-**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt;</code>
 
 --------------------
 
